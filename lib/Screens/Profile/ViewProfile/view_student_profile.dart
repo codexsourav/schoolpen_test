@@ -51,7 +51,8 @@ class ViewStudentProfile extends StatelessWidget {
                       // Profile Card Here ==============
                       ProfileCard(
                         backGroundColor: viewProfileTabs[roal]['bgcolor'],
-                        userName: userdata.profileData!.username ?? "",
+                        userName: 
+                        userdata.profileData!.username ?? "",
                         isStudent: true,
                         std: "Student".toString(),
                         buttonColor: viewProfileTabs[roal]['darkcolor'],
@@ -59,7 +60,6 @@ class ViewStudentProfile extends StatelessWidget {
                         onMessage: () {
                           Get.to(() => ChatHomeScreen(
                                 role: "student",
-                                myuserid: userdata.userid.toString(),
                                 image:
                                     "${Config.hostUrl}/static/${userdata.profileData!.userImage}",
                                 myid: userdata.profileData!.sId.toString(),

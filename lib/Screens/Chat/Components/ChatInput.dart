@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../Theme/Colors/appcolors.dart';
 
@@ -29,17 +28,11 @@ class ChatInput extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 18),
                   filled: true,
-                  prefixIcon: Padding(
+                  prefixIcon: const Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
-                    child: GestureDetector(
-                      onTap: () {
-                        Fluttertoast.showToast(
-                            msg: "This Option Is Coming Soon");
-                      },
-                      child: Icon(
-                        Icons.attach_file_rounded,
-                        size: 28,
-                      ),
+                    child: Icon(
+                      Icons.attach_file_rounded,
+                      size: 28,
                     ),
                   ),
                   border: InputBorder.none,

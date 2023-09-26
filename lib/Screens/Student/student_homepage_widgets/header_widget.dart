@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_svg/svg.dart';
@@ -36,7 +37,7 @@ class HeaderWidget extends StatelessWidget {
             //   width: screenWidth,
             //   fit: BoxFit.cover,
             // ),
-
+            
             Image.asset(
               "assets/Vector.png",
               width: screenWidth,
@@ -76,8 +77,8 @@ class HeaderWidget extends StatelessWidget {
                           // value.userlogout();
                         },
                         child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => ViewStudentProfile());
+                          onTap: (){
+                            Get.to(()=>ViewStudentProfile());
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
@@ -91,6 +92,7 @@ class HeaderWidget extends StatelessWidget {
                           ),
                         ),
                       ),
+
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: SizedBox(
@@ -111,7 +113,7 @@ class HeaderWidget extends StatelessWidget {
                                 Text(
                                   // "",
                                   // "${data.profileData!.username}",
-                                  "${getdata.userid}",
+                                  "Tarun",
                                   style: const TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.w700),
@@ -139,12 +141,14 @@ class HeaderWidget extends StatelessWidget {
                             // ],
                             // >>>>>>> master
                             ),
+
                       )
                     ],
                   ),
                   const SizedBox(
                     height: 8,
                   ),
+
                   const AppbarIconWidget()
                   // SizedBox(
                   //   width: 140,
@@ -173,6 +177,7 @@ class HeaderWidget extends StatelessWidget {
                   //     ],
                   //   ),
                   // )
+
                 ],
               ),
             ),
@@ -189,4 +194,6 @@ class HeaderWidget extends StatelessWidget {
       },
     );
   }
+
 }
+

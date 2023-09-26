@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:provider/provider.dart';
-import 'package:schoolpenintern/Providers/UserProfileProvider.dart';
-
-import '../../Chat/ChatHome/ChatHomeScreen.dart';
 
 class AppbarIconWidget extends StatelessWidget {
   const AppbarIconWidget({
@@ -14,7 +8,6 @@ class AppbarIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserProfileProvider userData = Provider.of<UserProfileProvider>(context);
     return SizedBox(
       width: 140,
       child: Row(
@@ -26,12 +19,7 @@ class AppbarIconWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => ChatHomeScreen(
-                    myid: userData.dbid.toString(),
-                    myuserid: userData.userid.toString(),
-                    image: userData.profileData!.userImage.toString(),
-                    role: userData.profileData!.role.toString(),
-                  ));
+              // Get.to(() => ChatHomeScreen());
             },
             child: SvgPicture.asset(
               "assets/images/student_section_images/homepage_images/header_images/chat_icon.svg",

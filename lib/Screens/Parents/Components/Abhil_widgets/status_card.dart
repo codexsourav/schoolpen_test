@@ -4,14 +4,12 @@ class StatusCard extends StatelessWidget {
   final String headline;
   final String description;
   final Color bgcolor;
-  final bool isedit;
-  const StatusCard({
-    super.key,
-    required this.headline,
-    required this.description,
-    this.bgcolor = Colors.white,
-    this.isedit = false,
-  });
+
+  const StatusCard(
+      {super.key,
+      required this.headline,
+      required this.description,
+      this.bgcolor = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +20,14 @@ class StatusCard extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 Text(
                   "Status",
                   style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                 ),
                 Spacer(),
-                isedit ? Icon(Icons.edit_square) : SizedBox(),
+                Icon(Icons.edit_square)
               ],
             ),
             const SizedBox(

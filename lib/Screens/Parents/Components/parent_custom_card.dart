@@ -12,7 +12,7 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, right: 15, top: 5, bottom: 5),
+      padding: const EdgeInsets.only(left: 2,right: 2, top: 5, bottom: 5),
       child: Container(
         width: 168,
         child: Column(

@@ -2,8 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:schoolpenintern/Providers/UserProfileProvider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:schoolpenintern/Screens/Profile/ViewProfile/view_parent_profile.dart';
 import 'package:schoolpenintern/Screens/Teacher/Theme/Colors/appcolors.dart';
 
@@ -18,14 +17,14 @@ import 'Components/parents_your_kids_card.dart';
 import 'Components/upcoming_event_card.dart';
 import 'custom/drawer.dart';
 
-class ParentHomePage extends StatefulWidget {
-  const ParentHomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<ParentHomePage> createState() => _ParentHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _ParentHomePageState extends State<ParentHomePage> {
+class _HomePageState extends State<HomePage> {
   final CarouselController _controller = CarouselController();
   final AdvancedDrawerController controller = AdvancedDrawerController();
   int itemCount = 4;
@@ -77,8 +76,6 @@ class _ParentHomePageState extends State<ParentHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    UserProfileProvider parentProvider =
-        Provider.of<UserProfileProvider>(context);
     return SafeArea(
       child: AdvancedDrawer(
         controller: controller,
@@ -91,8 +88,8 @@ class _ParentHomePageState extends State<ParentHomePage> {
             child:
                 Image.asset("assets/images/backgroud.png", fit: BoxFit.fill)),
         childDecoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-        drawer: DrawerScreen(
-          schoolName: parentProvider.parentprofile!.parentName.toString(),
+        drawer: const DrawerScreen(
+          schoolName: "Teacher Name",
           location: '',
           profileImg: 'assets/images/parantsImage.png',
         ),
@@ -175,7 +172,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(() => ViewParentProfile());
+                      Get.to(()=>ViewParentProfile());
                     },
                     child: Container(
                       width: 40,
@@ -212,17 +209,16 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 ),
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Your Kids",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.black)),
+                          style:GoogleFonts.lato(
+                 fontSize: 18,fontWeight: FontWeight.bold
+                    )),
                       // Icon(
                       //   Icons.calendar_today,
                       //   size: 25,
@@ -244,7 +240,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
                           return Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: Container(
-                              height: 20,
+                              height:20,
                               width: 50,
                               margin: const EdgeInsets.only(bottom: 5),
                               decoration: BoxDecoration(
@@ -291,54 +287,34 @@ class _ParentHomePageState extends State<ParentHomePage> {
                           maxWidth: 278,
                         ),
                         child: RichText(
-                          text: const TextSpan(
-                            style: TextStyle(
-                              fontFamily: 'Lato',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              height: 1.25,
-                              color: Color(0xff383838),
-                            ),
+                          text:  TextSpan(
+                            style:GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    ),
                             children: [
                               TextSpan(
                                 text: 'Tina',
-                                style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                  height: 1.25,
-                                  color: Color(0xff383838),
-                                ),
+                                style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                               ),
                               TextSpan(
                                 text: ' is attending her ',
-                                style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.25,
-                                  color: Color(0xff383838),
-                                ),
+                                style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                               ),
                               TextSpan(
                                 text: 'Biology',
-                                style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.25,
-                                  color: Color(0xff383838),
-                                ),
+                                style:GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                               ),
                               TextSpan(
                                 text: ' Class with Mrs. Shalini ',
-                                style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.25,
-                                  color: Color(0xff383838),
-                                ),
+                                style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                               ),
                             ],
                           ),
@@ -354,16 +330,13 @@ class _ParentHomePageState extends State<ParentHomePage> {
                   child: Text(
                     '5 min ago',
                     textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      height: 1,
-                      color: Color(0xff707070),
-                    ),
+                    style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                   ),
                 ),
               ),
+
               const SliverToBoxAdapter(
                 child: SizedBox(
                   height: 20,
@@ -423,21 +396,14 @@ class _ParentHomePageState extends State<ParentHomePage> {
                   margin: const EdgeInsets.fromLTRB(10, 0, 16, 0),
                   width: double.infinity,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0.78, 262, 0),
-                        child: const Text(
-                          'Her Classes',
-                          style: TextStyle(
-                            fontFamily: 'Lato',
-                            fontSize: 16,
-                            decoration: TextDecoration.none,
-                            fontWeight: FontWeight.w700,
-                            height: 1,
-                            color: Color(0xff383838),
-                          ),
-                        ),
+                      Text(
+                        'Her Classes',
+                        style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                       ),
                       Opacity(
                         opacity: 0.7,
@@ -502,21 +468,15 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0.78, 232, 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
                   child: Text(
-                    'Her Classe Teacher',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff383838),
-                    ),
-                  ),
+                    'Her Class Teacher',
+                    style: GoogleFonts.lato(
+ fontSize: 16,fontWeight: FontWeight.bold
+                    )
                 ),
-              ),
+              ),),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
               SliverToBoxAdapter(
                 child: Padding(
@@ -530,18 +490,13 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0.78, 280, 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
                   child: Text(
                     'All Teachers',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff383838),
-                    ),
+                    style:  GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                   ),
                 ),
               ),
@@ -558,18 +513,13 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0.78, 280, 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(left:10),
                   child: Text(
                     'Teachers Note',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff383838),
-                    ),
+                    style:  GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                   ),
                 ),
               ),
@@ -592,18 +542,13 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: const EdgeInsets.fromLTRB(10, 0.78, 250, 0),
-                  child: const Text(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child:  Text(
                     'Courses Enrolled',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff383838),
-                    ),
+                    style:GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                   ),
                 ),
               ),
@@ -631,18 +576,13 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0.78, 250, 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
                   child: Text(
                     'Similar Courses',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff383838),
-                    ),
+                    style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                   ),
                 ),
               ),
@@ -670,18 +610,13 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
               SliverToBoxAdapter(
-                child: Container(
-                  margin: const EdgeInsets.fromLTRB(10, 0.78, 290, 0),
-                  child: const Text(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
                     'Attendance',
-                    style: TextStyle(
-                      fontFamily: 'Lato',
-                      fontSize: 16,
-                      decoration: TextDecoration.none,
-                      fontWeight: FontWeight.w700,
-                      height: 1,
-                      color: Color(0xff383838),
-                    ),
+                    style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                   ),
                 ),
               ),
@@ -710,13 +645,9 @@ class _ParentHomePageState extends State<ParentHomePage> {
                                   child: Text(
                                     'Present',
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w700,
-                                      height: 0.6666666667,
-                                      color: const Color(0xff707070),
-                                    ),
+                                    style:GoogleFonts.lato(
+                 fontSize: 24,fontWeight: FontWeight.bold
+                    )
                                   ),
                                 ),
                               ),
@@ -724,77 +655,95 @@ class _ParentHomePageState extends State<ParentHomePage> {
                                 margin: EdgeInsets.fromLTRB(1, 0, 0, 0),
                                 child: Text(
                                   'Today',
-                                  style: TextStyle(
-                                    fontFamily: 'Lato',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.3333333333,
-                                    color: Color(0xff707070),
-                                  ),
+                                  style: GoogleFonts.lato(
+                 fontSize: 12,fontWeight: FontWeight.bold
+                    )
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                          width: 155.68,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.fromLTRB(0.32, 0, 0, 20),
-                                  child: Text(
-                                    '88%',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w700,
-                                      height: 0.6666666667,
-                                      color: Color(0xff707070),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.fromLTRB(55, 0, 11.5, 0),
-                                      child: Text(
-                                        'October',
+                        Padding(
+                          padding: const EdgeInsets.only(left: 70),
+                          child: Container(
+                            child: Column(children: [
+                              Text(
+                                        '88%',
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'Lato',
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.3333333333,
-                                          color: const Color(0xff707070),
-                                        ),
+                                        style: GoogleFonts.lato(
+                 fontSize: 24,fontWeight: FontWeight.bold
+                    )
                                       ),
-                                    ),
-                                    Container(
-                                      margin:
-                                          EdgeInsets.fromLTRB(0, 4.59, 0, 0),
-                                      width: 7.18,
-                                      height: 4.59,
-                                      child: Image.asset(
-                                        'assets/images/vector-3TF.png',
-                                        width: 7.18,
-                                        height: 4.59,
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: Text(
+                                              'October',
+                                              textAlign: TextAlign.center,
+                                              style: GoogleFonts.lato(
+                 fontSize: 12,fontWeight: FontWeight.bold
+                    )
+                                            ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                            ],),
                           ),
-                        ),
+                        )
+                        // Container(
+                        
+                        //   width: 130.68,
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     children: [
+                        //       Center(
+                        //         child: Container(
+                        //           margin: EdgeInsets.fromLTRB(0.32, 0, 0, 20),
+                        //           child: Text(
+                        //             '88%',
+                        //             textAlign: TextAlign.center,
+                        //             style: TextStyle(
+                        //               fontFamily: 'Poppins',
+                        //               fontSize: 24,
+                        //               fontWeight: FontWeight.w700,
+                                    
+                        //               color: Color(0xff707070),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       // Container(
+                        //       //   width: double.infinity,
+                        //       //   child: Row(
+                        //       //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //       //     children: [
+                        //       //       Container(
+                        //       //         margin: EdgeInsets.fromLTRB(55, 0, 11.5, 0),
+                        //       //         child: Text(
+                        //       //           'October',
+                        //       //           textAlign: TextAlign.center,
+                        //       //           style: TextStyle(
+                        //       //             fontFamily: 'Lato',
+                        //       //             fontSize: 12,
+                        //       //             fontWeight: FontWeight.w400,
+                        //       //             height: 1.3333333333,
+                        //       //             color: const Color(0xff707070),
+                        //       //           ),
+                        //       //         ),
+                        //       //       ),
+                        //       //       // Container(
+                        //       //       //   margin: EdgeInsets.fromLTRB(0, 4.59, 0, 0),
+                        //       //       //   width: 7.18,
+                        //       //       //   height: 4.59,
+                        //       //       //   child: Image.asset(
+                        //       //       //     'assets/images/vector-3TF.png',
+                        //       //       //     width: 7.18,
+                        //       //       //     height: 4.59,
+                        //       //       //   ),
+                        //       //       // ),
+                        //       //     ],
+                        //       //   ),
+                        //       // ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -805,16 +754,11 @@ class _ParentHomePageState extends State<ParentHomePage> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Container(
-                    child: const Text(
+                    child:  Text(
                       'Upcoming School Events',
-                      style: TextStyle(
-                        fontFamily: 'Lato',
-                        fontSize: 16,
-                        decoration: TextDecoration.none,
-                        fontWeight: FontWeight.w700,
-                        height: 1,
-                        color: Color(0xff383838),
-                      ),
+                      style: GoogleFonts.lato(
+                 fontSize: 16,fontWeight: FontWeight.bold
+                    )
                     ),
                   ),
                 ),
@@ -868,7 +812,7 @@ class _ParentHomePageState extends State<ParentHomePage> {
               ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 5),
+                  padding: const EdgeInsets.only(left: 8.0, right: 8),
                   child: Row(
                     children: [
                       CustomCard(
