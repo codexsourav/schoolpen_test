@@ -39,7 +39,7 @@ class _ChatUserListBoxState extends State<ChatUserListBox> {
 
   List chatsData = [];
   String lastmessage = "";
-  String? date;
+  String? date = "";
 
   getLastMessage(id) async {
     UserProfileProvider userdata =
@@ -56,7 +56,8 @@ class _ChatUserListBoxState extends State<ChatUserListBox> {
       Map resBodymap = jsonDecode(resBody);
       setState(() {
         lastmessage = resBodymap['message'];
-        date = resBodymap['created_at'];
+
+        date = changeTimeToDayOrHour(resBodymap['created_at'].toString());
       });
     } else {
       print(res.reasonPhrase);
@@ -171,7 +172,7 @@ class _ChatUserListBoxState extends State<ChatUserListBox> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            changeTimeToDayOrHour(date) ?? '',
+            date.toString(),
             style: TextStyle(fontSize: 12, color: AppColors.greenlignt),
           ),
           const SizedBox(height: 5),
