@@ -56,13 +56,7 @@ class ViewTeacherProfile extends StatelessWidget {
                             buttonColor: viewProfileTabs[roal]['darkcolor'],
                             onCall: () {},
                             onMessage: () {
-                              Get.to(() => ChatHomeScreen(
-                                    role: "teacher",
-                                    myid: userdata.dbid.toString(),
-                                    myuserid: userdata.userid.toString(),
-                                    image: userdata.profileData!.username
-                                        .toString(),
-                                  ));
+                              Get.to(()=>ChatHomeScreen(role: "teacher"));
                             },
                             image:
                                 "${Config.hostUrl}/static/${userdata.teacherdata!.userImage}",

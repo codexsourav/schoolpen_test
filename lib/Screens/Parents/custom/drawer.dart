@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:provider/provider.dart';
-
-import '../../../Providers/UserProfileProvider.dart';
-import '../../StartupDashBord/views/admin_user.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen(
@@ -115,11 +109,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               title: const Text("Subscription"),
             ),
             ListTile(
-              onTap: () {
-                Provider.of<UserProfileProvider>(context, listen: false)
-                    .userlogout();
-                Get.offAll(RoleScreen());
-              },
+              onTap: () {},
               leading: const Icon(Icons.output),
               title: const Text("Exit"),
             ),

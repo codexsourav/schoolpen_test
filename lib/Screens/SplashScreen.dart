@@ -82,7 +82,6 @@ class _SplashScreenState extends State<SplashScreen> {
                 .setParentData(res);
             Get.offAll(ViewParentProfile());
           } catch (e) {
-            print(e);
             Fluttertoast.showToast(msg: "Check Your Internet");
           }
         } else {
