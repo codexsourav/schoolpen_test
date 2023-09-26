@@ -57,15 +57,7 @@ class ViewParentProfile extends StatelessWidget {
                             buttonColor: viewProfileTabs[roal]['darkcolor'],
                             onCall: () {},
                             onMessage: () {
-                              Get.to(() => ChatHomeScreen(
-                                    role: "parent",
-                                    myid: userdata.dbid.toString(),
-                                    myuserid: userdata
-                                        .parentprofile!.parentUseridname
-                                        .toString(),
-                                    image: userdata.parentprofile!.parentImage
-                                        .toString(),
-                                  ));
+                              Get.to(() => ChatHomeScreen(role: "parent"));
                             },
                             image:
                                 "${Config.hostUrl}/static/${userdata.parentprofile!.parentImage}",
@@ -114,9 +106,9 @@ class ViewParentProfile extends StatelessWidget {
                               AboutCard(
                                 bgcolor: viewProfileTabs[roal]['bgcolor'],
                                 description: userdata
-                                    .parentprofile!.parentDescription
+                                    .parentprofile!.personalInfo!.parentAbout
                                     .toString(),
-                              ),
+                              )
                             ],
                           ),
                           // Abhill Widgets End====
@@ -132,16 +124,16 @@ class ViewParentProfile extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           // User Contact Card Here ==============
-                          // UserConatctBox(
-                          //   backgroundColor: viewProfileTabs[roal]['bgcolor'],
-                          //   onEditClick: () {},
-                          //   emailText: userdata.parentprofile!.!
-                          //       .contact!.parentEmail
-                          //       .toString(),
-                          //   phoneText:
-                          //       "+91 ${userdata.parentprofile!.personalInfo!.contact!.parentPhone}",
-                          //   locationAddress: "Just Show",
-                          // ),
+                          UserConatctBox(
+                            backgroundColor: viewProfileTabs[roal]['bgcolor'],
+                            onEditClick: () {},
+                            emailText: userdata.parentprofile!.personalInfo!
+                                .contact!.parentEmail
+                                .toString(),
+                            phoneText:
+                                "+91 ${userdata.parentprofile!.personalInfo!.contact!.parentPhone}",
+                            locationAddress: "Just Show",
+                          ),
                           const SizedBox(height: 20),
 
                           // Parent Card Here ==============

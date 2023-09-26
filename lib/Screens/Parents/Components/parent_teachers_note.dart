@@ -63,7 +63,7 @@ class TeachersNoteCard extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 130.0),
+                                padding: const EdgeInsets.only(left: 70.0),
                                 child: Text(
                                   '4 hours ago',
                                   style: TextStyle(

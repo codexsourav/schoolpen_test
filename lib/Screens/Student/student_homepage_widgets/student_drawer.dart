@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-import 'package:schoolpenintern/Providers/UserProfileProvider.dart';
-import 'package:schoolpenintern/Screens/StartupDashBord/views/admin_user.dart';
 
 class StudentDrawerScreen extends StatefulWidget {
   const StudentDrawerScreen(
@@ -117,11 +113,7 @@ class _StudentDrawerScreenState extends State<StudentDrawerScreen> {
             ),
             SizedBox(height: h * 0.12),
             ListTile(
-              onTap: () {
-                Provider.of<UserProfileProvider>(context, listen: false)
-                    .userlogout();
-                Get.offAll(RoleScreen());
-              },
+              onTap: () {},
               leading: const Icon(Icons.logout),
               title: const Text("Exit"),
             ),

@@ -3,13 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:schoolpenintern/Screens/Chat/ChatMessage/bloc/chat_message_bloc.dart';
 import 'package:schoolpenintern/Screens/Chat/Components/ChatBuble.dart';
 import 'package:schoolpenintern/Screens/Chat/Components/ChatInput.dart';
-import 'package:schoolpenintern/Screens/Profile/ViewUserProfile.dart';
 import 'package:schoolpenintern/Theme/Colors/appcolors.dart';
-import 'package:schoolpenintern/data/Network/config.dart';
 import 'package:schoolpenintern/utiles/TimeToDays.dart';
 import '../Components/ChatAppbar.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
@@ -18,7 +15,6 @@ import 'package:http/http.dart' as http;
 class ChatMessageScreen extends StatefulWidget {
   final dynamic myid;
   final dynamic chatuserid;
-  final dynamic chatusernameid;
   final dynamic name;
   final dynamic image;
   final dynamic roal;
@@ -27,7 +23,6 @@ class ChatMessageScreen extends StatefulWidget {
     super.key,
     required this.myid,
     required this.chatuserid,
-    required this.chatusernameid,
     required this.name,
     required this.image,
     required this.roal,
@@ -49,27 +44,24 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
   @override
   void initState() {
     // SErup LOst Chat Server
+    String serverUrl = 'http://192.168.97.88:6000/';
 
 // Pass User Info On Sever
-    Bloc chat = BlocProvider.of<ChatMessageBloc>(context);
     username = widget.myid.toString();
-    resiver = widget.chatusernameid.toString();
-    print("====================>${widget.chatusernameid} ${widget.myid}");
-    String serverUrl = 'http://192.168.33.88:7000';
+    resiver = widget.chatuserid.toString();
+
     socket = io.io(serverUrl, <String, dynamic>{
       'transports': ['websocket'],
     });
+    Bloc chat = BlocProvider.of<ChatMessageBloc>(context);
 
     socket.onConnect((data) {
       Map user = {"sender": username, "recipient": resiver};
       socket.emit('initConnect', user);
     });
 
-    socket.connect();
-
     socket.on('getoldmessage', (data) {
       chatsData = data['messages'];
-
       chat.emit(ChatMessageShow(message: chatsData));
     });
 
@@ -88,9 +80,10 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
     });
 
     socket.on('nouserfound', (data) {
-      Fluttertoast.showToast(msg: "No User Found!");
       Navigator.of(context).pop();
     });
+
+    socket.connect();
 
     super.initState();
   }
@@ -126,10 +119,9 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
   Future blockUser() async {
     try {
       http.Response data = await http.get(
-          Uri.parse("http://192.168.33.88:7000/block_user/$username/$resiver"));
+          Uri.parse("http://192.168.97.88:6000/block_user/$username/$resiver"));
       var resdata = jsonDecode(data.body);
       print(resdata);
-      Fluttertoast.showToast(msg: "User Blocked");
     } catch (e) {
       print(e);
       Fluttertoast.showToast(msg: "Request Not Send : Error");
@@ -138,25 +130,19 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
 
   Future unblockUser() async {
     try {
-      http.Response data = await http.post(Uri.parse(
-          "http://192.168.33.88:7000/unblock_user/$username/$resiver"));
+      http.Response data = await http.get(Uri.parse(
+          "http://192.168.97.88:6000/unblock_user/$username/$resiver"));
       var resdata = jsonDecode(data.body);
-      Fluttertoast.showToast(msg: "User UnBlock");
+      print(resdata);
     } catch (e) {
       print(e);
       Fluttertoast.showToast(msg: "Request Not Send : Error");
     }
   }
 
-  onselect(e) async {
+  onselect(e) {
     if (e == "block") {
-      await blockUser();
-    } else if (e == "unblock") {
-      await unblockUser();
-    } else if (e == "profile") {
-      Get.to(ViewUserProfile(userid: widget.chatusernameid, role: widget.roal));
-    } else {
-      Fluttertoast.showToast(msg: "This Option Is Coming Soon");
+      blockUser();
     }
     print(e);
   }
@@ -199,10 +185,11 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
                     reverse: true,
                     itemBuilder: (_, index) {
                       return ChatBubble(
-                          resiver: revmesg[index]['recipient'] != resiver,
-                          message: revmesg[index]['message'],
-                          sendtext: changeTimeToDayOrHour(
-                              revmesg[index]['created_at']));
+                        resiver: revmesg[index]['recipient'] != resiver,
+                        message: revmesg[index]['message'],
+                        sendtext:
+                            changeTimeToDayOrHour(revmesg[index]['created_at']),
+                      );
                     },
                   );
                 } else {

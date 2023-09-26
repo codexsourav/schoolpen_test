@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
-
-import '../../Providers/UserProfileProvider.dart';
-import '../StartupDashBord/views/admin_user.dart';
 
 class TeacherDrawerScreen extends StatefulWidget {
   const TeacherDrawerScreen(
       {super.key,
-      required this.schoolName,
-      required this.location,
-      required this.profileImg});
+        required this.schoolName,
+        required this.location,
+        required this.profileImg});
   final String schoolName;
   final String location;
   final String profileImg;
@@ -114,11 +109,7 @@ class _TeacherDrawerScreenState extends State<TeacherDrawerScreen> {
               title: const Text("Subscription"),
             ),
             ListTile(
-              onTap: () {
-                Provider.of<UserProfileProvider>(context, listen: false)
-                    .userlogout();
-                Get.offAll(RoleScreen());
-              },
+              onTap: () {},
               leading: const Icon(Icons.output),
               title: const Text("Exit"),
             ),

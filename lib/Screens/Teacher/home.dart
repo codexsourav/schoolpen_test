@@ -23,6 +23,7 @@ class TeacherHomePage extends StatefulWidget {
 }
 
 class _TeacherHomePageState extends State<TeacherHomePage> {
+
   final CarouselController _controller = CarouselController();
   final ScrollController scrollController = ScrollController();
   final AdvancedDrawerController controller = AdvancedDrawerController();
@@ -34,13 +35,14 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    String backgroundImageAsset = "assets/images/bgteacher_top_background.svg";
+    String backgroundImageAsset =  "assets/images/bgteacher_top_background.svg";
 
     scrollController.addListener(() {
       if (scrollController.offset > 188) {
         hideBar = true;
         setState(() {
           backgroundImageAsset = "assets/images/parent_bg.png";
+
         });
       } else {
         hideBar = false;
@@ -51,252 +53,249 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
     });
     UserProfileProvider dataProvider =
         Provider.of<UserProfileProvider>(context);
+
     return SafeArea(
         child: Padding(
-      padding: const EdgeInsets.only(top: 18.0),
-      child: AdvancedDrawer(
+          padding: const EdgeInsets.only(top: 18.0),
+          child: AdvancedDrawer(
           controller: controller,
           openScale: 0.7,
           openRatio: 0.65,
           disabledGestures: false,
           backdrop: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Image.asset("assets/images/parent_drawer_bg.png",
-                  fit: BoxFit.fill)),
-          childDecoration:
-              BoxDecoration(borderRadius: BorderRadius.circular(20)),
-          drawer: const TeacherDrawerScreen(
-            schoolName: "Stonehill International",
-            location: '',
-            profileImg: 'assets/images/parantsImage.png',
-          ),
-          child: Scaffold(
-              bottomNavigationBar: BottomNavigationBar(
-                currentIndex: 0,
-                iconSize: 25,
-                type: BottomNavigationBarType.fixed,
-                selectedItemColor: AppColors.parentPrimary,
-                onTap: (value) {},
-                unselectedItemColor: AppColors.black.withOpacity(0.5),
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.home,
-                    ),
-                    label: "Home",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.explore),
-                    label: "Explore",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.menu_book),
-                    label: "Classwork",
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.videocam),
-                    label: "Courses",
-                  ),
-                ],
+          width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size.height,
+    child:
+    Image.asset("assets/images/parent_drawer_bg.png", fit: BoxFit.fill)),
+    childDecoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+    drawer: const TeacherDrawerScreen(
+    schoolName: "Stonehill International",
+    location: '',
+    profileImg: 'assets/images/parantsImage.png',
+    ),
+    child:Scaffold(
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 0,
+            iconSize: 25,
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: AppColors.parentPrimary,
+            onTap: (value) {},
+            unselectedItemColor: AppColors.black.withOpacity(0.5),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: "Home",
+
               ),
-              body: CustomScrollView(
-                controller: scrollController,
-                slivers: [
-                  SliverAppBar(
-                    collapsedHeight: 90,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    leading: IconButton(
-                      onPressed: () {
-                        controller.showDrawer();
-                      },
-                      icon: const Icon(
-                        Icons.menu,
-                        color: Colors.black,
+              BottomNavigationBarItem(
+                icon: Icon(Icons.explore),
+                label: "Explore",
+              ),
+
+              BottomNavigationBarItem(
+                icon: Icon(Icons.menu_book),
+                label: "Classwork",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.videocam),
+                label: "Courses",
+              ),
+            ],
+          ),
+          body: CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              SliverAppBar(
+
+                collapsedHeight: 90,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                leading: IconButton(
+                  onPressed: () {
+                    controller.showDrawer();
+                  },
+                  icon: const Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  ),
+                ),
+                toolbarHeight: 70,
+                actions: hideBar
+                    ? [
+                  const Spacer(),
+                  CircleAvatarButton(
+                    iconData: Icons.search,
+                    onTap: () {},
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  CircleAvatarButton(
+                    iconData: Icons.messenger,
+                    onTap: () {},
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  CircleAvatarButton(
+                    iconData: Icons.notifications,
+                    onTap: () {},
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  const CircleAvatar(
+                    backgroundImage:
+                    AssetImage('assets/stone_hill_logo.png'),
+                  ),
+                  const SizedBox(
+                    width: 13,
+                  ),
+                ]
+                    : [],
+                expandedHeight: 300,
+                pinned: true,
+                flexibleSpace:
+                  Stack(
+                    children: [
+                      // Positioned.fill(child: Image.asset(backgroundImageAsset)),
+                      SvgPicture.asset(
+                        backgroundImageAsset,
+                        height: 300,
+                        width: screenWidth,
+                        fit: BoxFit.cover,
                       ),
-                    ),
-                    toolbarHeight: 70,
-                    actions: hideBar
-                        ? [
-                            const Spacer(),
-                            CircleAvatarButton(
-                              iconData: Icons.search,
-                              onTap: () {},
+                      // SvgPicture.asset(
+                      //   "assets/images/bgteacher_top_background.svg",
+                      //   width: screenWidth,
+                      //   fit: BoxFit.cover,
+                      // ),
+                      // Positioned(
+                      //   top: 45,
+                      //   left: 20,
+                      //   child: SvgPicture.asset(
+                      //     "assets/images/bgteacher_top_background.svg",
+                      //     width: 30,
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // ),
+                      Positioned(
+                        top: 100,
+                        left: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    // value.userlogout();
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network(
+                                      // "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
+                                      "https://m.media-amazon.com/images/I/41EvGpCFECL._AC_UF1000,1000_QL80_.jpg",
+                                      width: 50,
+                                      height: 50,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Welcome back",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    Consumer<UserProfileProvider>(
+                                        builder: (context, value, child) {
+                                          return Text(
+                                            "Rishabh",
+                                            // value.profileData!.username.toString() ?? "",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.w700),
+                                          );
+                                        })
+                                  ],
+                                )
+                              ],
                             ),
-                            const SizedBox(
-                              width: 5,
+                            SizedBox(
+                              height: 16,
                             ),
-                            CircleAvatarButton(
-                              iconData: Icons.messenger,
-                              onTap: () {},
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            CircleAvatarButton(
-                              iconData: Icons.notifications,
-                              onTap: () {},
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/stone_hill_logo.png'),
-                            ),
-                            const SizedBox(
-                              width: 13,
-                            ),
-                          ]
-                        : [],
-                    expandedHeight: 300,
-                    pinned: true,
-                    flexibleSpace: Stack(
-                      children: [
-                        // Positioned.fill(child: Image.asset(backgroundImageAsset)),
-                        SvgPicture.asset(
-                          backgroundImageAsset,
-                          height: 300,
-                          width: screenWidth,
-                          fit: BoxFit.cover,
-                        ),
-                        // SvgPicture.asset(
-                        //   "assets/images/bgteacher_top_background.svg",
-                        //   width: screenWidth,
-                        //   fit: BoxFit.cover,
-                        // ),
-                        // Positioned(
-                        //   top: 45,
-                        //   left: 20,
-                        //   child: SvgPicture.asset(
-                        //     "assets/images/bgteacher_top_background.svg",
-                        //     width: 30,
-                        //     fit: BoxFit.cover,
-                        //   ),
-                        // ),
-                        Positioned(
-                          top: 100,
-                          left: 20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
+                            SizedBox(
+                              width: 140,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Icon(
+                                    Icons.search,
+                                    color: AppColors.parentPrimaryLight,
+                                  ),
                                   GestureDetector(
                                     onTap: () {
-                                      // value.userlogout();
+                                      var teacherdata = Provider.of<UserProfileProvider>(
+                                        context,
+                                        listen: false,
+                                      ).teacherdata;
+                                      Get.to(() => ChatHomeScreen(
+                                        role: "student",
+                                        myid: teacherdata!.sId.toString(),
+                                      ));
                                     },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.network(
-                                        // "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80",
-                                        "https://m.media-amazon.com/images/I/41EvGpCFECL._AC_UF1000,1000_QL80_.jpg",
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover,
-                                      ),
+                                    child: Icon(
+                                      Icons.messenger,
+                                      color: AppColors.parentPrimaryLight,
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 12,
+                                  Icon(
+                                    Icons.notifications,
+                                    color: AppColors.parentPrimaryLight,
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Welcome back",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Consumer<UserProfileProvider>(
-                                          builder: (context, value, child) {
-                                        return Text(
-                                          "Rishabh",
-                                          // value.profileData!.username.toString() ?? "",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.w700),
-                                        );
-                                      })
-                                    ],
-                                  )
                                 ],
                               ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              SizedBox(
-                                width: 140,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Icon(
-                                      Icons.search,
-                                      color: AppColors.parentPrimaryLight,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        var teacherdata =
-                                            Provider.of<UserProfileProvider>(
-                                          context,
-                                          listen: false,
-                                        ).teacherdata;
-                                        Get.to(() => ChatHomeScreen(
-                                              role: "teacher",
-                                              myuserid: teacherdata!
-                                                  .profile!
-                                                  .useridnamePassword!
-                                                  .useridName
-                                                  .toString(),
-                                              myid: teacherdata.sId.toString(),
-                                              image: teacherdata.userImage
-                                                  .toString(),
-                                            ));
-                                      },
-                                      child: Icon(
-                                        Icons.messenger,
-                                        color: AppColors.parentPrimaryLight,
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.notifications,
-                                      color: AppColors.parentPrimaryLight,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  // ),
-                  buildBody(),
-                ],
-              ))),
-    ));
+                ),
+              // ),
+              buildBody(),
+            ],
+          )
+
+    )),
+
+        ));
   }
 
   Widget buildBody() => SliverToBoxAdapter(
-        child: Stack(children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 40, left: 20),
+
+        child: Stack(
+          children:[ Padding(
+            padding: const EdgeInsets.only(top:40, left: 20),
+
             child: Image.asset("assets/teacherbg.png"),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 90,
-              ),
+              SizedBox(height: 90,),
               Row(
                 children: [
                   Padding(
@@ -474,10 +473,6 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                                       fontSize: 24,
                                       color: Color(0xFF7CD6FB),
                                       fontWeight: FontWeight.bold),
-                                  // style: TextStyle(
-                                  //     fontSize: 24,
-                                  //     color: Color(0xFFF38E20),
-                                  //     fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   "July",
@@ -486,20 +481,6 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                                       color: Color(0xFF7CD6FB),
                                       fontWeight: FontWeight.bold),
                                 )
-                                // Text(
-                                //   "08",
-                                //   style: TextStyle(
-                                //       fontSize: 24,
-                                //       color: Color(0xFF7CD6FB),
-                                //       fontWeight: FontWeight.bold),
-                                // ),
-                                // Text(
-                                //   "July",
-                                //   style: TextStyle(
-                                //       fontSize: 12,
-                                //       color: Color(0xFF7CD6FB),
-                                //       fontWeight: FontWeight.bold),
-                                // )
                               ],
                             ),
                           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Map viewProfileTabs = {
-  "student": {
+  "Student": {
     'bgcolor': const Color.fromARGB(255, 255, 251, 230),
     "darkcolor": const Color.fromARGB(255, 254, 214, 0),
     "tabs": [
@@ -23,7 +23,7 @@ Map viewProfileTabs = {
       },
     ],
   },
-  "teacher": {
+  "Teacher": {
     'bgcolor': const Color.fromARGB(255, 250, 237, 239),
     "darkcolor": const Color.fromARGB(255, 211, 76, 97),
     "tabs": [
@@ -45,7 +45,7 @@ Map viewProfileTabs = {
       },
     ],
   },
-  "parent": {
+  "Parent": {
     'bgcolor': const Color(0xFFEEFCF3),
     "darkcolor": const Color(0xFF56E484),
     "tabs": [

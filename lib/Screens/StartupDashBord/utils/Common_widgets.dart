@@ -113,31 +113,19 @@ class MultiTextInputField extends StatelessWidget {
   final String title;
   final String hinttext1;
   final String hinttext2;
-  final TextEditingController controller1;
-  final TextEditingController controller2;
-  MultiTextInputField(
-      {super.key,
-      required this.controller1,
-      required this.controller2,
-      required this.title,
-      required this.hinttext1,
-      required this.hinttext2,
-      required this.isNumbered,
-      required this.color});
+  final TextEditingController controller1 ;
+ final  TextEditingController controller2;
+  MultiTextInputField({super.key, required this.controller1, required this.controller2, required this.title, required this.hinttext1, required this.hinttext2, required this.isNumbered, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment:MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Text(
-            title,
-            textAlign: TextAlign.left,
-            style: TextStyle(fontWeight: FontWeight.w500),
-          ),
+          child: Text(title,textAlign: TextAlign.left,style: TextStyle(fontWeight: FontWeight.w500),),
         ),
         Row(
           children: [
@@ -145,42 +133,40 @@ class MultiTextInputField extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 height: 50,
-                decoration: BoxDecoration(
-                    color: color, borderRadius: BorderRadius.circular(30)),
+                decoration: BoxDecoration(color: color,borderRadius: BorderRadius.circular(30)),
                 width: MediaQuery.of(context).size.width * 0.9 / 2,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextField(
-                    keyboardType: TextInputType.streetAddress,
+                    keyboardType:TextInputType.streetAddress,
                     controller: controller1,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        hintText: hinttext1,
-                        hintStyle: TextStyle(color: Colors.grey)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      hintText: hinttext1,
+                      hintStyle: TextStyle(color: Colors.grey)
+                    ),
                   ),
                 ),
               ),
             ),
+
             Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    color: color, borderRadius: BorderRadius.circular(30)),
-                width: MediaQuery.of(context).size.width * 0.9 / 2.5,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    keyboardType: isNumbered
-                        ? TextInputType.number
-                        : TextInputType.streetAddress,
-                    controller: controller2,
+                              height: 50,
+                decoration: BoxDecoration(color: color,borderRadius: BorderRadius.circular(30)),
+                
+              width: MediaQuery.of(context).size.width * 0.9 / 2.5,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: TextField(
+                          keyboardType:isNumbered?TextInputType.number:TextInputType.streetAddress,
+                   controller: controller2,
                     decoration: InputDecoration(
-                        border: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        hintText: hinttext2,
-                        hintStyle: TextStyle(color: Colors.grey)),
-                  ),
-                ))
+              
+                         border: InputBorder.none,
+                        enabledBorder: InputBorder.none, hintText: hinttext2,   hintStyle: TextStyle(color: Colors.grey)),
+                          ),
+              ))
           ],
         ),
       ],
@@ -203,6 +189,7 @@ class HeaderWidget1 extends StatelessWidget {
         return Stack(
           children: [
             SvgPicture.asset(
+              
               "assets/images/bgteacher_top_background.svg",
               width: screenWidth,
               fit: BoxFit.cover,
@@ -234,9 +221,7 @@ class HeaderWidget1 extends StatelessWidget {
                           // value.userlogout();
                         },
                         child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => ViewStudentProfile());
-                          },
+                          onTap:() {Get.to(()=>ViewStudentProfile());},
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Image.network(
@@ -258,9 +243,8 @@ class HeaderWidget1 extends StatelessWidget {
                           Text(
                             "Welcome back",
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
+                              color: Colors.white,
+                                fontSize: 16, fontWeight: FontWeight.w400),
                           ),
                           Consumer<UserProfileProvider>(
                               builder: (context, value, child) {
@@ -268,9 +252,8 @@ class HeaderWidget1 extends StatelessWidget {
                               "Rishabh",
                               // value.profileData!.username.toString() ?? "",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w700),
+                                color: Colors.white,
+                                  fontSize: 22, fontWeight: FontWeight.w700),
                             );
                           })
                         ],
@@ -285,34 +268,37 @@ class HeaderWidget1 extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const CircleAvatar(
-                          radius: 18,
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            Icons.search,
-                            color: AppColors.parentPrimary,
-                          ),
-                        ),
+                          const CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: Colors.white,
+                                    child: Icon(
+                                      Icons.search,
+                                      color: AppColors.parentPrimary,
+                                    ),
+                                  ),
                         GestureDetector(
-                            onTap: () {
-                              // Get.to(()=>ChatHomeScreen(role: "student"));
-                            },
-                            child: const CircleAvatar(
-                              radius: 18,
-                              backgroundColor: Colors.white,
-                              child: Icon(
-                                Icons.messenger,
-                                color: AppColors.parentPrimary,
-                              ),
-                            )),
-                        const CircleAvatar(
-                          radius: 18,
-                          backgroundColor: Colors.white,
-                          child: Icon(
-                            Icons.notifications,
-                            color: AppColors.parentPrimary,
-                          ),
-                        )
+
+                          onTap:() {
+                            Get.to(()=>ChatHomeScreen(role: "student"));
+                          },
+                          child:   const CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: Colors.white,
+                                    child: Icon(
+                                      Icons.messenger,
+                                      color: AppColors.parentPrimary,
+                                    ),
+                                  )
+                        ),
+                          const CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: Colors.white,
+                                    child: Icon(
+                                      Icons.notifications,
+                                      color: AppColors.parentPrimary,
+                                    ),
+                                  )
+
                       ],
                     ),
                   )
@@ -325,3 +311,4 @@ class HeaderWidget1 extends StatelessWidget {
     );
   }
 }
+

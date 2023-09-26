@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 
 import 'package:schoolpenintern/Screens/StartupDashBord/views/admin_user.dart';
 import 'package:schoolpenintern/Screens/Teacher/home.dart';
-import 'Providers/ChatUserProvider.dart';
 import 'Providers/UserProfileProvider.dart';
 import 'Routes/app_routes.dart';
 import 'Providers/AddUsersProvider.dart';
@@ -35,7 +34,6 @@ class Initializeapp {
         providers: [
           ChangeNotifierProvider(create: (_) => AddUsersProvider()),
           ChangeNotifierProvider(create: (_) => UserProfileProvider()),
-          ChangeNotifierProvider(create: (_) => ChatUserProvider()),
         ],
         child: const MyApp(),
       ),
@@ -55,9 +53,9 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       themeMode: ThemeMode.light,
       onGenerateRoute: AppRoutes.generateRoute,
-      // initialRoute: RoutesName.splash,
+      initialRoute: RoutesName.splash,
 
-      initialRoute: RoutesName.startPage,
+      // initialRoute: RoutesName.startPage,
       home: RoleScreen(),
 
       // home: const ChatHomeScreen(
