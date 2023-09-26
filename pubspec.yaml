@@ -1,0 +1,115 @@
+name: schoolpenintern
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  path: ^1.8.3
+  flutter_toggle_tab: ^1.4.1
+  socket_io_client: ^2.0.3+1
+  intl: ^0.17.0
+  http : ^1.1.0
+  flutter_bloc: ^8.1.3
+  provider: ^6.0.5
+  shared_preferences: ^2.2.1
+  animated_custom_dropdown: 1.5.0
+  dio: ^5.3.2
+  file_picker: ^5.5.0
+  fluttertoast: ^8.2.2
+  flutter_custom_clippers: ^2.1.0
+  flutter_animation_progress_bar: ^2.3.1
+  get: ^4.6.6
+  google_fonts: ^5.1.0
+  flutter_svg: ^2.0.7
+  nopsuite_carousel_slider: ^0.0.3
+  flutter_advanced_drawer: ^1.3.5
+  carousel_slider: ^4.1.1
+  toggle_switch: ^2.1.0
+  image_picker: ^1.0.4
+  flutter_easyloading: ^3.0.5
+  velocity_x: ^4.1.1
+  autocomplete_textfield: 
+  horizontal_week_calendar: ^0.0.7
+  calender_picker: ^2.0.1
+  cached_network_image: ^3.2.3
+  localstorage: ^4.0.1+4
+  fl_chart: ^0.63.0
+
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/management/
+    - assets/initimages/
+    - assets/images/
+    - assets/images/student_section_images/
+    - assets/images/student_section_images/homepage_images/
+    - assets/images/student_section_images/homepage_images/calender_images/
+    - assets/images/student_section_images/homepage_images/header_images/
+    - assets/images/student_section_images/homepage_images/notice_images/
+    - assets/images/student_section_images/homepage_images/syllabus_images/
+    - assets/images/student_section_images/homepage_images/teachers_notes_images/
+    - assets/images/student_section_images/homepage_images/todays_classes_images/
+    - assets/images/student_section_images/homepage_images/live_classes_images/
+    - assets/Vector.png
+
+
+
+
+
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
