@@ -14,25 +14,16 @@ class UserProfileProvider extends ChangeNotifier {
 
   setProfileData(data) {
     profileData = StudentProfileModel.fromJson(data);
-    dbid = profileData!.sId;
-    roal = profileData!.role;
-    userid = profileData!.userId;
     notifyListeners();
   }
 
   setTeacherData(data) {
     teacherdata = TeacherProfileModel.fromJson(data);
-    dbid = teacherdata!.sId;
-    userid = teacherdata!.profile!.useridnamePassword!.useridName;
-    roal = teacherdata!.role;
     notifyListeners();
   }
 
   setParentData(data) {
     parentprofile = ParentProfileModel.fromJson(data);
-    dbid = parentprofile!.parentUseridname;
-    userid = parentprofile!.parentUseridname;
-    roal = 'parent';
     notifyListeners();
   }
 

@@ -14,12 +14,13 @@ import '../../../data/Network/config.dart';
 import '../../Student/home_screen.dart';
 import '../Models/signup_model.dart';
 
+
 class ProfileController extends GetxController {
   RxString futureRole = "".obs;
   RxString role = "".obs;
   RxString name = "".obs;
   RxString region = "".obs;
-  Future<signupModel?> logIn(context, String username, String password) async {
+  Future<String> logIn(context, String username, String password) async {
     try {
       final requestData = {
         'username': username,
@@ -36,7 +37,7 @@ class ProfileController extends GetxController {
         print(response.data);
         print(signupModel.fromJson(response.data).message);
         print(signupModel.fromJson(response.data).userId);
-        return signupModel.fromJson(response.data);
+        return signupModel.fromJson(response.data).role!;
         // print(response.data);
         // print(signupModel.fromJson(response.data).message);
         // print(signupModel.fromJson(response.data).userId);
@@ -73,18 +74,22 @@ class ProfileController extends GetxController {
         //   Fluttertoast.showToast(msg: "Something went wrong");
         // }
       } else {
+
         Fluttertoast.showToast(
+           
             msg: signupModel.fromJson(response.data).message!);
         print(response.statusCode);
-        return null;
+         return "";
       }
     } on DioException catch (e) {
+
       if (e.response!.data != null) {
         Fluttertoast.showToast(
+           
             msg: signupModel.fromJson(e.response!.data).message ??
                 "Something went wrong");
       }
-      return null;
+       return 'Error';
     }
   }
 }

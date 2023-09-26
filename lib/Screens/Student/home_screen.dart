@@ -57,8 +57,8 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
             child: Image.asset("assets/images/student_drawer_background.png",
                 fit: BoxFit.fill)),
         childDecoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-        drawer: StudentDrawerScreen(
-          schoolName: "${data.userid}",
+        drawer: const StudentDrawerScreen(
+          schoolName: "Teacher Name",
           location: '',
           profileImg: 'assets/images/parantsImage.png',
         ),
@@ -92,6 +92,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
             //   thickness: 5,
             // ),
 
+            
             // GestureDetector(
             //   onTap: () async {},
             //   child: HeaderWidget(

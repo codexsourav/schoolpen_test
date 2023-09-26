@@ -73,82 +73,26 @@ class Login extends StatelessWidget {
               padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.05),
               child: Center(
-                child: CustomButton(
-                    callback: () async {
-                      signupModel? data = await profileController.logIn(context,
-                          userIdController.text, passWdController.text);
-                      if (data != null) {
-                        // return false;
-                        if (data.role == "student") {
+                  child: CustomButton(
+                      callback: () async {
+                        var role = await profileController.logIn(context,
+                            userIdController.text, passWdController.text);
+                        if (role == "student") {
                           //Fluttertoast.showToast(msg: 'Student');
-                          try {
-                            var res = await ApiNetwork.sendGetRequest(
-                                'get_user/${data.userId}');
-                            print(res);
-                            // ignore: use_build_context_synchronously
-                            Provider.of<UserProfileProvider>(context,
-                                    listen: false)
-                                .setProfileData(res);
-
-                            final SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-                            prefs.setString("roal", "student");
-                            prefs.setString("user_id", res['user_id']);
-
-                            Get.offAll(const StudentHomeScreen(
-                              role: "student",
-                            ));
-                          } catch (e) {
-                            print(e);
-                            Fluttertoast.showToast(
-                                msg: "Internal Server Error");
-// >>>>>>> maste
-                          }
-                        } else if (data.role == "teacher") {
-                          try {
-                            var res = await ApiNetwork.sendGetRequest(
-                                'get_teacher/${data.userId}');
-                            // ignore: use_build_context_synchronously
-                            Provider.of<UserProfileProvider>(context,
-                                    listen: false)
-                                .setTeacherData(res);
-                            Get.offAll(TeacherHomePage());
-                            print(res);
-                          } catch (e) {
-                            print(e);
-                            Fluttertoast.showToast(
-                                msg: "Internal Server Error");
-                          }
-                        } else if (data.role == "parent") {
-                          // ParentHomePage
-
-                          try {
-                            var res = await ApiNetwork.sendGetRequest(
-                                'parent_data/${data.userId}');
-                            // ignore: use_build_context_synchronously
-                            Provider.of<UserProfileProvider>(context,
-                                    listen: false)
-                                .setParentData(res);
-                            Get.offAll(const ParentHomePage());
-                            print(res);
-                          } catch (e) {
-                            print(e);
-                            Fluttertoast.showToast(
-                                msg: "Internal Server Error");
-                          }
-
-                          // Fluttertoast.showToast(
-                          //     msg: 'Parent screen not implemented');
+                          Get.offAll(() => StudentHomeScreen(
+                                role: role,
+                              ));
+                        } else if (role == "teacher") {
+                          // Fluttertoast.showToast(msg: 'Teacher');
+                          Get.offAll(() => TeacherHomePage());
+                        } else if (role == "parent") {
+                          Get.to(() => HomePage());
                         } else {
                           Fluttertoast.showToast(msg: 'Login error');
                         }
-                      } else {
-                        Fluttertoast.showToast(msg: 'Invalid Credentials');
-                      }
-                    },
-                    text: "Login"),
-              ),
-            ),
+                      },
+                      text: "Login")),
+            )
           ],
         ),
       ),

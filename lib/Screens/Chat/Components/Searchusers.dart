@@ -1,14 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:schoolpenintern/Providers/UserProfileProvider.dart';
-import 'package:schoolpenintern/Screens/Chat/ChatMessage/ChatMessageScreen.dart';
-import 'package:schoolpenintern/Screens/Chat/ChatMessage/bloc/chat_message_bloc.dart';
 import 'package:schoolpenintern/Screens/Chat/Components/ChatuserListBox.dart';
 import 'package:schoolpenintern/data/Network/config.dart';
 import '../../../Helper/snackBarHelper.dart';
@@ -33,7 +30,7 @@ class _SearchUsersState extends State<SearchUsers> {
   Future getSearchData() async {
     try {
       http.Response data = await http.get(Uri.parse(
-          "${Config.hostUrl}/get_profile/${_textEditingController.text}"));
+          "http://192.168.97.88:5000/get_profile/${_textEditingController.text}"));
 
       Map reddata = jsonDecode(data.body);
       if (reddata.containsKey("message")) {
@@ -56,7 +53,6 @@ class _SearchUsersState extends State<SearchUsers> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.myid);
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -153,26 +149,43 @@ class _SearchUsersState extends State<SearchUsers> {
                             )
                           ],
                         ),
-                        IconButton(
-                            onPressed: () {
-                              Get.to(
-                                BlocProvider(
-                                  create: (context) => ChatMessageBloc(),
-                                  child: ChatMessageScreen(
-                                    myid: widget.myid,
-                                    chatuserid: dataMoadel!.userId,
-                                    name: dataMoadel!.username,
-                                    image: dataMoadel!.userImage,
-                                    chatusernameid: dataMoadel!.userId,
-                                    roal: dataMoadel!.role,
-                                  ),
+
+                        SizedBox(height: 20),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                // oSendRequest(
+                                //   Provider.of<UserProfileProvider>(context,
+                                //           listen: false)
+                                //       .dbid,
+                                //   dataMoadel!.sId,
+                                // );
+                              },
+                              child: Container(
+                                width: 120,
+                                height: 40,
+                                child: Center(child: Text("Send Request")),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
-                              );
-                            },
-                            icon: Icon(
-                              Icons.message_rounded,
-                              size: 30,
-                            ))
+                              ),
+                            ),
+                            Container(
+                              width: 120,
+                              height: 40,
+                              child: Center(child: Text("View Profile")),
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                          ],
+                        )
+
                       ],
                     ),
                   ),
